@@ -6,6 +6,15 @@
 montage -mode Concatenate *.jpg result.jpg
 ```
 
+## SVG を透過 PNG に変換する
+
+```sh
+convert -background none [-density xxx] input.svg output.png
+
+# どの色の透明にしたいか細かく指定したい場合
+convert -background 'rgba(255, 255, 255, 0)' [-density xxx] input.svg output.png
+```
+
 ## 画像の上下または左右にマージンをつけることで指定の縦横比にする
 
 👉 [scripts/add-margin-to-ratio.sh](scripts/add-margin-to-ratio.sh)
