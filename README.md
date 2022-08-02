@@ -15,6 +15,12 @@ convert -background none [-density xxx] input.svg output.png
 convert -background 'rgba(255, 255, 255, 0)' [-density xxx] input.svg output.png
 ```
 
+## 画像の上下左右にある白色のマージンを自動で削除する
+
+```sh
+convert input.png -trim output.png
+```
+
 ## 画像の上下または左右にマージンをつけることで指定の縦横比にする
 
 👉 [scripts/add-margin-to-ratio.sh](scripts/add-margin-to-ratio.sh)
