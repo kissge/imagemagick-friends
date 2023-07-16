@@ -43,3 +43,13 @@ diff.sh before.png after.png diff.png
 firefox --screenshot "$PWD"/output.png https://www.legalscape.jp/
 google-chrome --headless --screenshot=output.png https://www.legalscape.jp/
 ```
+
+## 画像を円に切り抜く
+
+👉 [scripts/crop-to-circle.sh](scripts/crop-to-circle.sh)
+
+```sh
+crop-to-circle.sh input.png [output.png]
+```
+
+入力が正方形でない場合、出力は楕円形になる
