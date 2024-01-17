@@ -23,11 +23,14 @@ read img_width img_height diff_width diff_height diff_top < <(
         grep -F '=>' |
         sed -e 's/.* \([0-9]*\)x\([0-9]*\)=>\([0-9]*\)x\([0-9]*\) [0-9]*x[0-9]*+[0-9]*+\([0-9]*\).*/\1 \2 \3 \4 \5/'
 )
-((diff_bottom = diff_top + diff_height))
-((crop_top = diff_top > margin ? diff_top - margin : 0))
-((crop_bottom = diff_bottom + margin > img_height ? img_height : diff_bottom + margin))
-((crop_height = crop_bottom - crop_top))
-((text_top = crop_top + 30))
+((\
+diff_bottom = diff_top + diff_height, \
+crop_top = diff_top > margin ? diff_top - margin : 0, \
+crop_bottom = diff_bottom + margin > img_height ? img_height : diff_bottom + margin, \
+crop_height = crop_bottom - crop_top, \
+text_top = crop_top + 30)) || true
+echo img width: "$img_width" x height: "$img_height"
+echo diff width: "$diff_width" x height: "$diff_height", top: "$diff_top" - bottom: "$diff_bottom"
 
 # TODO: diffがめちゃくちゃ上の方にある場合、文字がかぶるので余白をつけたい
 
