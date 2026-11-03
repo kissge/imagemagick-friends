@@ -19,7 +19,7 @@ fi
 
 # Get diff area
 read img_width img_height diff_width diff_height diff_top < <(
-    convert "$tmp"/diff.png -verbose -trim /dev/null |
+    magick "$tmp"/diff.png -verbose -trim /dev/null |
         grep -F '=>' |
         sed -e 's/.* \([0-9]*\)x\([0-9]*\)=>\([0-9]*\)x\([0-9]*\) [0-9]*x[0-9]*+[0-9]*+\([0-9]*\).*/\1 \2 \3 \4 \5/'
 )
@@ -37,7 +37,7 @@ echo diff width: "$diff_width" x height: "$diff_height", top: "$diff_top" - bott
 # Crop each image and add text
 function crop_and_caption() {
     # Thanks to https://legacy.imagemagick.org/discourse-server/viewtopic.php?t=31323
-    convert "$1" \
+    magick "$1" \
         \( -size "$img_width"x"$crop_height" -background none -gravity center -pointsize 50 -fill white caption:"$2" -trim +repage \) \
         \( -clone 1 -background black -shadow 80x3+2+2 \) \
         \( -clone 1 -clone 2 +swap -background none -layers merge +repage \) \
